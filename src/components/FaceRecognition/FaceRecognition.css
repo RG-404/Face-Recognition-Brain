@@ -1,0 +1,15 @@
+.bounding-box {
+    position: absolute;
+    /* box-shadow: 0 0 0 3px #149df2 inset; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    cursor: pointer;
+    animation: glow 2s cubic-bezier(.03,.63,.43,1.89) 0s infinite;
+}
+
+@keyframes glow {
+    0%   {box-shadow: 0 0 0 3px #149df2 inset;}
+    75% {box-shadow: 0 0 0 5px #149df2 inset;}
+    100% {box-shadow: 0 0 0 3px #149df2 inset;}
+  }
