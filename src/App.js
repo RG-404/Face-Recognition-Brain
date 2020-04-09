@@ -33,6 +33,7 @@ function App() {
   const [imageUrl, setimageUrl] = useState('');
   const [box, setbox] = useState({});
   const [route, setroute] = useState('signin')
+  const [isSignedIn, setisSignedIn] = useState(false)
 
   const onInputChange = (event) => {
     setinput(event.target.value)
@@ -52,7 +53,6 @@ function App() {
   }
 
   const displayFaceBox = (box) => {
-    console.log(box);
     setbox(box);
   }
 
@@ -60,7 +60,6 @@ function App() {
     app.models
       .predict(Clarifai.FACE_DETECT_MODEL, input)
       .then(response => {
-        console.log(response.outputs[0].data.regions[0].region_info.bounding_box);
         displayFaceBox(calculateFaceLocation(response))
       })
       .catch(err => console.log(err))
@@ -72,6 +71,11 @@ function App() {
   }
 
   const onRouteChange = (route) => {
+    if(route === 'signin' || route==='register') {
+      setisSignedIn(false)
+    }else if(route==='home'){
+      setisSignedIn(true)
+    }
     setroute(route);
   }
 
@@ -80,7 +84,7 @@ function App() {
 
       <Particles className='particles'
         params={paraticlesOptions} />
-      <Navigation onRouteChange={onRouteChange}/>
+      <Navigation isSignedIn={isSignedIn} onRouteChange={onRouteChange}/>
       {route === 'home' ?
         (
           <div>
@@ -102,8 +106,6 @@ function App() {
           <Register onRouteChange={onRouteChange}/>
         )
       }
-
-
     </div>
   );
 }
