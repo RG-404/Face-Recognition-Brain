@@ -1,5 +1,4 @@
 import React from 'react';
-import Tilt from 'react-tilt';
 import './FaceRecognition.css';
 
 const Navigation = ({ imageUrl, box }) => {
@@ -16,11 +15,9 @@ const Navigation = ({ imageUrl, box }) => {
                             bottom: box.bottomRow,
                             left: box.leftCol,
                         }
-
                     }
-                ></div>
-
-
+                >
+                </div>
             </div>
         </div>
     )
